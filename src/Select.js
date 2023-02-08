@@ -624,7 +624,7 @@ class Select extends React.Component {
 				isOpen: !this.props.closeOnSelect,
 			}, () => {
 				const valueArray = this.getValueArray(this.props.value);
-				if (valueArray.some(i => i[this.props.valueKey] === value[this.props.valueKey])) {
+				if (this.props.toggleOnOptionSelect && valueArray.some(i => i[this.props.valueKey] === value[this.props.valueKey])) {
 					this.removeValue(value);
 				} else {
 					this.addValue(value);
@@ -1259,6 +1259,7 @@ Select.propTypes = {
 	style: PropTypes.object,              // optional style to apply to the control
 	tabIndex: stringOrNumber,             // optional tab index of the control
 	tabSelectsValue: PropTypes.bool,      // whether to treat tabbing out while focused to be value selection
+	toggleOnOptionSelect: PropTypes.bool, // whether to remove existing value on option select
 	trimFilter: PropTypes.bool,           // whether to trim whitespace around filter value
 	value: PropTypes.any,                 // initial field value
 	valueComponent: PropTypes.func,       // value component to render
@@ -1308,6 +1309,7 @@ Select.defaultProps = {
 	searchable: true,
 	simpleValue: false,
 	tabSelectsValue: true,
+	toggleOnOptionSelect: true,
  	trimFilter: true,
 	valueComponent: Value,
 	valueKey: 'value',

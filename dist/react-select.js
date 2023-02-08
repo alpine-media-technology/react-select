@@ -1297,7 +1297,7 @@ var Select$1 = function (_React$Component) {
 					isOpen: !this.props.closeOnSelect
 				}, function () {
 					var valueArray = _this3.getValueArray(_this3.props.value);
-					if (valueArray.some(function (i) {
+					if (_this3.props.toggleOnOptionSelect && valueArray.some(function (i) {
 						return i[_this3.props.valueKey] === value[_this3.props.valueKey];
 					})) {
 						_this3.removeValue(value);
@@ -1981,6 +1981,7 @@ Select$1.propTypes = {
 	style: PropTypes.object, // optional style to apply to the control
 	tabIndex: stringOrNumber, // optional tab index of the control
 	tabSelectsValue: PropTypes.bool, // whether to treat tabbing out while focused to be value selection
+	toggleOnOptionSelect: PropTypes.bool, // whether to remove existing value on option select
 	trimFilter: PropTypes.bool, // whether to trim whitespace around filter value
 	value: PropTypes.any, // initial field value
 	valueComponent: PropTypes.func, // value component to render
@@ -2030,6 +2031,7 @@ Select$1.defaultProps = {
 	searchable: true,
 	simpleValue: false,
 	tabSelectsValue: true,
+	toggleOnOptionSelect: true,
 	trimFilter: true,
 	valueComponent: Value,
 	valueKey: 'value'
